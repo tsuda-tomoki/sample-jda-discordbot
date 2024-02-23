@@ -14,18 +14,24 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SampleMessageLisner  extends ListenerAdapter {
+public class RoomieCheckEvent extends ListenerAdapter {
 
   @Override
   public void onMessageReceived(MessageReceivedEvent messageReceivedEvent) {
 
     if (messageReceivedEvent.getAuthor().isBot()) return;
+    if (messageReceivedEvent.getAuthor().getName().equals("koharina")) return;
+    if (messageReceivedEvent.getAuthor().getName().equals("vivid_naria")) return;
+
 
     if (messageReceivedEvent.getMessage().getContentRaw().equals("?roomie")) {
       for (String message : getRoomieURLs()) {
         messageReceivedEvent.getChannel().sendMessage(message).queue();
       }
     }
+
+    if (messageReceivedEvent.getMessage().getContentRaw().equals("?ex:stop"))
+      System.exit(0);
   }
 
   private List<String> getRoomieURLs() {
