@@ -47,7 +47,7 @@ public class RoomieCheckEvent extends ListenerAdapter {
         if (!Objects.equals(element.absUrl("href"), "https://twitter.com/roomiejp"))
           elementList.add(element.absUrl("href"));
 
-        if (elementList.size() == 10) break;
+        if (elementList.size() == 5) break;
       }
       return elementList;
 
